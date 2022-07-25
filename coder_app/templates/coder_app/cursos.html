@@ -1,0 +1,78 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Cursos
+{% endblock %}
+
+{% block contenidoPagina %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h1>Nuestros cursos:</h1>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <form class="d-flex my-2 my-lg-0" action="" method="post">
+                    {% csrf_token %}
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por curso/comisión" aria-label="Search">
+                    <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear-curso' %}"> <i class="bi bi-plus-lg"></i> Crear Curso</a>
+                        {% endif %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <br>
+        <h4>Resultados
+            {% if search %}
+                para "{{busqueda}}":
+            {% else %}
+                totales:
+            {% endif %}
+        </h4>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Comisión</th>
+                            {% if user.is_authenticated %}
+                                  
+                                <th scope="col">Acción</th>
+                                
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for curso in cursos %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{curso.nombre}}</td>
+                                <td>{{curso.comision}}</td>
+                                <th>
+                                    {% if user.is_authenticated %}
+                                    
+                                        {% if user.is_staff %}     
+                                            <a href="{% url 'editar_curso' curso.id %}" class="badge rounded-pill bg-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Editar</a>
+                                        {% endif %}
+                                        
+                                        <a href="{% url 'detalle_curso' curso.id %}" class="badge rounded-pill bg-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Visualizar</a>
+                                    
+                                    {% endif %}
+                                </th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+               </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

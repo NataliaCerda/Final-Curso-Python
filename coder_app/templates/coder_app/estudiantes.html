@@ -1,0 +1,46 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Estudiantes
+{% endblock %}
+
+{% block contenidoPagina  %}
+<section class="py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <h1>
+                    Los estudiantes son:
+                </h1>
+                <br>
+                <table class="table table-theme">
+                    <thead>
+                        <td scope="col">#</td>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Email</td>
+                        <td>Acción</td>
+                    </thead>
+                    <tbody>
+                        {% for estudiante in estudiantes %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{ estudiante.nombre }}</td>
+                                <td>{{ estudiante.apellido }}</td>
+                                <td>{{ estudiante.email }}</td>
+                                <td>
+                                    <a href="{% url 'eliminar_estudiante' estudiante.id %}" class="badge rounded-pill bg-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    <a href="{% url 'modificar_estudiante' estudiante.id %}" class="badge rounded-pill bg-success badge badge-success text-decoration-none"> <i class="bi bi-x-square"></i> Modificar</a>
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear-estudiante' %}"> <i class="bi bi-plus-lg"></i> Crear Estudiante</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

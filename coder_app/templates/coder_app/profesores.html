@@ -1,0 +1,42 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Profesores
+{% endblock %}
+
+{% block contenidoPagina  %}
+<section class="py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <h1>
+                    Los profesores son:
+                </h1>
+                <br>
+                <table class="table table-theme">
+                    <thead>
+                        <td scope="col">#</td>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Email</td>
+                        <td>Profesión</td>
+                    </thead>
+                    <tbody>
+                        {% for profesor in profesores %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{ profesor.nombre }}</td>
+                                <td>{{ profesor.apellido }}</td>
+                                <td>{{ profesor.email }}</td>
+                                <td>{{ profesor.profesion }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear-profesor' %}"> <i class="bi bi-plus-lg"></i> Crear Profesor</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

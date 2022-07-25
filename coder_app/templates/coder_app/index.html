@@ -1,0 +1,32 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Inicio
+{% endblock %}
+
+{% block contenidoPagina %}
+        <!-- Header - set the background image for the header in the line below-->
+        <header class="py-5 bg-image-full" style="background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFlDxL0MmkYjwoUdvpv0d2jTFqoSdeOYLbbQ&usqp=CAU) no-repeat center center / cover;">
+            <div class="text-center my-5">
+                <h1 class="text-black fs-1 fw-bolder">ENTREGA DEL PROYECTO FINAL</h1>
+                <p class="text-black-50 mb-0">Natalia Julieta Cerda</p>
+            </div>
+        </header>
+        <section class="py-5">
+            <div class="container my-5">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{% static 'carousel/carrusel1.jpg' %}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'carousel/carrusel2.jpg' %}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'carousel/carrusel3.jpg' %}" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                  </div>
+            </div>        
+{% endblock %}

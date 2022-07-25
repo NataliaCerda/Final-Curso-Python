@@ -1,0 +1,33 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Profesores
+{% endblock %}
+
+{% block contenidoPagina  %}
+<section class="py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <h1>
+                    Los profesores son:
+                </h1>
+                <br>
+                <ul>
+                    {% for profesor in object_list %}
+                        <li>
+                            {{forloop.counter}} - {{profesor.nombre}} {{profesor.apellido}} | {{profesor.profesion}} |
+                            <a href="{% url 'profesores_detail' profesor.id %}">Ver Detalle</a>
+                            <a href="{% url 'profesores_update' profesor.id %}">Editar</a>
+                            <a href="{% url 'profesores_delete' profesor.id %}">Eliminar</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <br>
+                <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'profesores_create' %}"> <i class="bi bi-plus-lg"></i> Crear Profesor</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

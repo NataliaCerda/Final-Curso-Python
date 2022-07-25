@@ -1,0 +1,41 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Detalle Cursos
+{% endblock %}
+
+{% block contenidoPagina %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h2>Más detalle de nuestro curso:</h2>
+        <br>
+        {% if curso.imagen %}
+            <img src="{{ curso.imagen.url }}" class="card-img-top" alt="No tenemos un imagen para este curso aún">
+        {% endif %}
+        <br>
+        <div class="card" style="width: 80rem;">
+            <div class="card-body">
+              <h4 class="card-title">{{curso.nombre}}</h4>
+              <p class="card-text">{{curso.descripcion}}</p>
+              <a href="{% url 'cursos' %}" class="btn btn-light">Volver a Cursos</a>
+            </div>
+          </div>
+          <br>
+          <a class="btn btn-secondary" href="{% url 'agregar_comentario_curso' id=curso.id %}">Agregar Comentario</a>
+          <br>
+          <br>
+          <h6>Comentarios:</h6>
+          {% for comentario in curso.comentario.all %}
+            <div class="comment">
+                <p>{{ comentario.texto |linebreaks }}</p>
+                <p>Fecha: {{ comentario.fecha }}</p>
+                <p>Usuario: {{ comentario.autor }}</p>
+            </div>
+          {% empty %}
+              <p>No hay comentarios aún :(</p>
+          {% endfor %}
+          
+    </div>
+</section>
+{% endblock %}

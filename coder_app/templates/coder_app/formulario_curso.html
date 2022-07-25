@@ -1,0 +1,23 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Crear Curso
+{% endblock %}
+
+{% block contenidoPagina  %}
+
+<h2>Crea un nuevo curso:</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!--<p>Curso: <input type="text" name="nombre" id="" maxlength="30"></p>
+    <p>Comisión: <input type="number" name="comision" id="" min="0"></p> -->
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Crear Curso">
+    
+</form>
+{% endblock %}

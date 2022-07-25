@@ -1,0 +1,23 @@
+{% extends 'coder_app/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Coder App - Agrega un comentario
+{% endblock %}
+
+{% block contenidoPagina  %}
+
+<h1>Nuevo Comentario</h1>
+
+<h3>Agrega un nuevo comentario al curso: </h3>
+
+<form method="POST" class="post-form">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="save btn btn-default">Guardar</button>
+
+</form>
+
+{% endblock %}
